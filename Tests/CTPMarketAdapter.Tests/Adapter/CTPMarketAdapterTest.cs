@@ -4,14 +4,12 @@ using System;
 using System.Threading;
 
 
-namespace CTPMarketAdapter.Adapter.Tests
-{
+namespace CTPMarketAdapter.Adapter.Tests {
     /// <summary>
     /// CTP行情适配器测试用例
     /// </summary>
     [TestClass()]
-    public class CTPMarketAdapterTest
-    {
+    public class CTPMarketAdapterTest {
         /// <summary>
         /// 行情适配器接口实例
         /// </summary>
@@ -20,7 +18,7 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// <summary>
         /// 连接地址
         /// </summary>
-        private string _frontAddr = "tcp://180.168.146.187:10010";
+        private string _frontAddr = "tcp://180.168.146.187:10110";
 
         /// <summary>
         /// 经纪商代码
@@ -30,12 +28,12 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// <summary>
         /// 投资者账号
         /// </summary>
-        private string _investor = "081081";
+        private string _investor = "097217";
 
         /// <summary>
         /// 密码
         /// </summary>
-        private string _password = "test1234";
+        private string _password = "123456";
 
         /// <summary>
         /// 是否连接
@@ -51,30 +49,21 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// 初始化测试用例
         /// </summary>
         [TestInitialize]
-        public void Initialize()
-        {
+        public void Initialize() {
             _adapter = new MarketAdapter();
-            var connectCallback = new DataCallback((DataResult result) =>
-            {
-                if (result.IsSuccess)
-                {
+            var connectCallback = new DataCallback((DataResult result) => {
+                if(result.IsSuccess) {
                     _isConnected = true;
-                    var loginCallback = new DataCallback((DataResult loginResult) =>
-                    {
-                        if (loginResult.IsSuccess)
-                        {
+                    var loginCallback = new DataCallback((DataResult loginResult) => {
+                        if(loginResult.IsSuccess) {
                             _isLogin = true;
-                        }
-                        else
-                        {
+                        } else {
                             Console.WriteLine("登录失败：{0}", loginResult.Error);
                         }
                     });
                     _adapter.UserLogin(loginCallback, _investor, _password);
                     Thread.Sleep(100);
-                }
-                else
-                {
+                } else {
                     Console.WriteLine("连接失败：{0}", result.Error);
                 }
             });
@@ -86,34 +75,22 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// 清理测试用例
         /// </summary>
         [TestCleanup]
-        public void Cleanup()
-        {
-            if (_isLogin)
-            {
-                var logoutCallback = new DataCallback((DataResult logoutResult) =>
-                 {
-                     if (logoutResult.IsSuccess)
-                     {
-                         _isLogin = false;
-                     }
-                     else
-                     {
-                         Console.WriteLine("登出失败：{0}", logoutResult.Error);
-                     }
-                 });
+        public void Cleanup() {
+            if(_isLogin) {
+                var logoutCallback = new DataCallback((DataResult logoutResult) => {
+                    if(logoutResult.IsSuccess) {
+                        _isLogin = false;
+                    } else {
+                        Console.WriteLine("登出失败：{0}", logoutResult.Error);
+                    }
+                });
                 _adapter.UserLogout(logoutCallback);
                 Thread.Sleep(100);
-            }
-            else if (_isConnected)
-            {
-                var disconnectCallback = new DataCallback((DataResult disconnectResult) =>
-                {
-                    if (disconnectResult.IsSuccess)
-                    {
+            } else if(_isConnected) {
+                var disconnectCallback = new DataCallback((DataResult disconnectResult) => {
+                    if(disconnectResult.IsSuccess) {
                         _isConnected = false;
-                    }
-                    else
-                    {
+                    } else {
                         Console.WriteLine("登出失败：{0}", disconnectResult.Error);
                     }
                 });
@@ -126,8 +103,7 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// 测试获取交易日
         /// </summary>
         [TestMethod()]
-        public void TestGetTradingDay()
-        {
+        public void TestGetTradingDay() {
             string result = _adapter.GetTradingDay();
             Assert.AreEqual(8, result.Length);
         }
@@ -136,12 +112,10 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// 测试订阅行情
         /// </summary>
         [TestMethod()]
-        public void TestSubscribeMarket()
-        {
+        public void TestSubscribeMarket() {
             string instrmentID = "IF1809";
             //订阅行情
-            _adapter.OnMarketDataChanged += new MarketDataChangedHandler((market) =>
-            {
+            _adapter.OnMarketDataChanged += new MarketDataChangedHandler((market) => {
                 Assert.AreEqual(instrmentID, market.InstrmentID);
             });
 
