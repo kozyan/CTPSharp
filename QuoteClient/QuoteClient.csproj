@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CTPCore\CTPCore.csproj" />
+    <ProjectReference Include="..\CTPMarketAdapter\CTPMarketAdapter.csproj" />
+    <ProjectReference Include="..\CTPMarketApi\CTPMarketApi.csproj" />
+    <ProjectReference Include="..\CTPTradeAdapter\CTPTradeAdapter.csproj" />
+    <ProjectReference Include="..\CTPTradeApi\CTPTradeApi.csproj" />
+  </ItemGroup>
+
+</Project>

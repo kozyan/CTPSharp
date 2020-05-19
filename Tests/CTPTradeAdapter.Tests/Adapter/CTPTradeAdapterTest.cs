@@ -26,7 +26,7 @@ namespace CTPTradeAdapter.Adapter.Tests
         /// 180.168.146.187:10001
         /// 218.202.237.33:10002
         /// </summary>
-        private string _frontAddr = "tcp://218.202.237.33:10002";
+        private string _frontAddr = "tcp://180.168.146.187:10100";
 
         /// <summary>
         /// 经纪商代码

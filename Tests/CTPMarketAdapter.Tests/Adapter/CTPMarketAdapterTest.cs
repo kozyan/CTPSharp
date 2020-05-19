@@ -20,7 +20,7 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// <summary>
         /// 连接地址
         /// </summary>
-        private string _frontAddr = "tcp://180.168.146.187:10010";
+        private string _frontAddr = "tcp://180.168.146.187:10110";
 
         /// <summary>
         /// 经纪商代码
@@ -30,12 +30,12 @@ namespace CTPMarketAdapter.Adapter.Tests
         /// <summary>
         /// 投资者账号
         /// </summary>
-        private string _investor = "081081";
+        private string _investor = "097217";
 
         /// <summary>
         /// 密码
         /// </summary>
-        private string _password = "test1234";
+        private string _password = "123456";
 
         /// <summary>
         /// 是否连接
@@ -138,7 +138,7 @@ namespace CTPMarketAdapter.Adapter.Tests
         [TestMethod()]
         public void TestSubscribeMarket()
         {
-            string instrmentID = "IF1809";
+            string instrmentID = "IF2007";
             //订阅行情
             _adapter.OnMarketDataChanged += new MarketDataChangedHandler((market) =>
             {

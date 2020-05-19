@@ -44,7 +44,12 @@ namespace CTPTradeApi
                 string path = Path.GetFullPath(string.Format("{0}\\{1}", LibraryWrapper.ProcessorArchitecture,
                         DllName));
                 _wrapper = new LibraryWrapper(path);
-                getSystemInfo = _wrapper.GetUnmanagedFunction<DelegateGetSystemInfo>("?CTP_GetSystemInfo@@YAHPADAAH@Z");
+
+                if(LibraryWrapper.ProcessorArchitecture == "x86") {
+                    getSystemInfo = _wrapper.GetUnmanagedFunction<DelegateGetSystemInfo>("?CTP_GetSystemInfo@@YAHPADAAH@Z");
+                } else {
+                    getSystemInfo = _wrapper.GetUnmanagedFunction<DelegateGetSystemInfo>("?CTP_GetSystemInfo@@YAHPEADAEAH@Z");
+                }
             }
             catch (Exception ex)
             {

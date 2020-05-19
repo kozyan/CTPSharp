@@ -22,22 +22,22 @@ namespace CTPTradeApi.Tests
         /// 180.168.146.187:10001
         /// 218.202.237.33:10002
         /// </summary>
-        private string _frontAddr = "tcp://180.169.50.131:42205";
+        private string _frontAddr = "tcp://180.168.146.187:10100";
 
         /// <summary>
         /// 经纪商代码
         /// </summary>
-        private string _brokerID = "2071";
+        private string _brokerID = "9999";
 
         /// <summary>
         /// 投资者账号
         /// </summary>
-        private string _investorID = "10000020";
+        private string _investorID = "097217";
 
         /// <summary>
         /// 密码
         /// </summary>
-        private string _password = "123456test";
+        private string _password = "123456";
 
         /// <summary>
         /// 是否连接

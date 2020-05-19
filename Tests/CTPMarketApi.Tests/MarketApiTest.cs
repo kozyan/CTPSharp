@@ -18,22 +18,22 @@ namespace CTPMarketApi.Tests
         /// <summary>
         /// 连接地址
         /// </summary>
-        private string _frontAddr = "tcp://180.169.50.131:42205";
+        private string _frontAddr = "tcp://180.168.146.187:10110";
 
         /// <summary>
         /// 经纪商代码
         /// </summary>
-        private string _brokerID = "2071";
+        private string _brokerID = "9999";
 
         /// <summary>
         /// 投资者账号
         /// </summary>
-        private string _investorID = "10000020";
+        private string _investorID = "097217";
 
         /// <summary>
         /// 密码
         /// </summary>
-        private string _password = "123456test";
+        private string _password = "123456";
 
         /// <summary>
         /// 是否连接
@@ -125,7 +125,7 @@ namespace CTPMarketApi.Tests
         [TestMethod()]
         public void TestSubscribeMarketData()
         {
-            string instrumentID = "IF1809";
+            string instrumentID = "NI2007";
             _api.OnRspSubMarketData += new MarketApi.RspSubMarketData((ref CThostFtdcSpecificInstrumentField pSpecificInstrument,
             ref CThostFtdcRspInfoField pRspInfo, int nRequestID, byte bIsLast) =>
             {
